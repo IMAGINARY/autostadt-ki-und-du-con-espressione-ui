@@ -5,13 +5,8 @@
   "main": "conEspressione",
   "conEspressioneSong": 0,
   "name": {
-    "en": "Ludwig van Beethoven,<br/>Piano&nbsp;Sonata&nbsp;Op.27&nbsp;No.2 in&nbsp;C&#8209sharp&nbsp;minor (&ldquo;Moonlight&nbsp;Sonata&rdquo;),<br/>1st&nbsp;movement",
-    "de": "Ludwig van Beethoven,<br/>Klaviersonate&nbsp;Op.27&nbsp;No.2 in&nbsp;Cis&#8209Moll (&bdquo;Mondscheinsonate&ldquo;),<br/>1.&nbsp;Satz",
-    "fr": "Ludwig van Beethoven,<br/>Sonate&nbsp;pour&nbsp;piano&nbsp;Op.27&nbsp;No.2 en&nbsp;do&nbsp;dièse&nbsp;mineur (&laquo;Clair&nbsp;de&nbsp;lune&raquo;),<br/>Premier&nbsp;mouvement"
+    "en": "<span class=\"name-1\">Moonlight&nbsp;Sonata</span><span class=\"name-2\">Ludwig van Beethoven</span><span class=\"name-3\">Piano&nbsp;Sonata&nbsp;Op.27&nbsp;No.2<br />in&nbsp;C&#8209sharp&nbsp;minor,&nbsp;1st&nbsp;movement</span>",
+    "de": "<span class=\"name-1\">Mondscheinsonate</span><span class=\"name-2\">Ludwig van Beethoven</span><span class=\"name-3\">Klaviersonate&nbsp;Op.27&nbsp;No.2<br />in&nbsp;Cis&#8209Moll,&nbsp;1.&nbsp;Satz</span>"
   },
-  "description": {
-    "en": "",
-    "de": "",
-    "fr": ""
-  }
+  "description": ""
 }

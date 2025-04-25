@@ -10,9 +10,8 @@ lang: de
 # a default fallback title.
 #
 title:
-  en: Con Espressione!
-  de: Mit Ausdruck!
-  fr: Con Espressione!
+  en: Choose a composition
+  de: Wähle ein Musikstück
 
 #
 # Logo image to show on top of the menu.
@@ -36,10 +35,11 @@ title:
 # Available themes: default, blue, green.
 # See more info about defining new themes in the README.md file.
 #
-theme: ../../themes/lalalab-con-espressione
+theme: ../../themes/autostadt-ki-und-du-con-espressione
 
 plugins:
   - ../plugins/con-espressione-launcher
+  - ../plugins/language-button-hack
 
 #
 # List of apps to load in the menu
@@ -48,10 +48,10 @@ plugins:
 # on the app.json file format.
 #
 apps:
-  - ../apps/beethoven_fuer_elise_complete
   - ../apps/chopin_op10_no3_v422
-  - ../apps/beethoven_op027_no2_mv1_bm_z
+  - ../apps/beethoven_fuer_elise_complete
   - ../apps/mozart_kv545_mv2
+  - ../apps/beethoven_op027_no2_mv1_bm_z
 
 #
 # App to load when the user clicks on the "info" button. Typically an
@@ -91,7 +91,7 @@ apps:
 # more than one local variant of the same language.
 # Also only enable languages for which translations are available.
 #
-langMenuShow: true
+langMenuShow: false
 
 #
 # Indicate which languages to show if the language switcher menu is shown
@@ -100,7 +100,6 @@ langMenuShow: true
 langMenuItems:
   - en
   - de
-  - fr
 
 #
 # Text that will be shown in the menu beneath the app icons.
@@ -109,6 +108,5 @@ langMenuItems:
 # a default fallback title.
 #
 infoText:
-  en: <p>Move your hand over the sensor and play with<br>volume and speed of the musical piece.</p><p>Move the slider to get support from our Artificial Intelligence musician.</p>
-  de: <p>Bewege deine Hand über den Sensor vor dir und experimentiere<br>mit Lautstärke und Tempo des Klavierstücks.</p><p>Aktiviere die künstliche Intelligenz, indem du den Schieberegler bewegst.</p>
-  fr: <p>Bougez la main au-dessus du capteur pour modifier<br>le volume et le tempo de la pièce de musique.</p><p>Déplacez le curseur pour que notre musicien doté d'intelligence artificielle interprète vos mouvements.</p>
+  en: <p>Move your hand over the sensor in front of you and play with loudness and tempo of the musical piece.</p><p>Move the slider to get support from our Artificial Intelligence musician.</p>
+  de: <p>Bewege deine Hand über den Sensor vor dir und experimentiere mit Lautheit und Tempo des Klavierstücks.</p><p>Bewege den Schieberegler, um dich durch die künstliche Intelligenz unterstützen zu lassen.</p>

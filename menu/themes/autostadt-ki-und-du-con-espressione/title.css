@@ -1,0 +1,20 @@
+@import url("space-grotesk.css");
+
+.logo {
+  position: absolute;
+  top: 130px;
+  left: 90px;
+  text-align: left;
+  pointer-events: none;
+  transition-property: none;
+}
+
+.logo .logo-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: bold;
+  font-size: 80px;
+  color: black;
+  transform: scale(1) !important;
+  line-height: 1 !important;
+  text-box: trim-both cap alphabetic;
+}

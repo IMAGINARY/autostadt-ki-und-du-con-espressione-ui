@@ -1,0 +1,38 @@
+@import url("space-grotesk.css");
+
+.util-button-lang {
+  position: absolute;
+  bottom: 95px;
+  left: 90px;
+  width: 222px;
+  height: 100px;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: #d7c1aa;
+  border-radius: 50px;
+  padding: 0px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-box: trim-both cap alphabetic;
+}
+
+.util-button-lang > span {
+  content: "Language";
+  color: black;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.util-button-lang > span::before {
+  content: "Language";
+}
+
+body[data-lang="de"] .util-button-lang > span::before {
+  content: "Deutsch";
+}
+
+body[data-lang="en"] .util-button-lang > span::before {
+  content: "English";
+}

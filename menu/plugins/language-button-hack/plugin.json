@@ -1,0 +1,5 @@
+{
+  "id": "language-button-hack",
+  "version": "v1.0",
+  "scripts": ["js/language-button-hack.js"]
+}

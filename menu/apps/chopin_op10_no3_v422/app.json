@@ -5,13 +5,8 @@
   "main": "conEspressione",
   "conEspressioneSong": 1,
   "name": {
-    "en": "Frédéric&nbsp;Chopin,<br/>Etude&nbsp;Op.10&nbsp;No.3 in E&nbsp;major (beginning)",
-    "de": "Frédéric&nbsp;Chopin,<br/>Etude&nbsp;Op.10&nbsp;No.3 in&nbsp;E&#8209Dur (Anfang)",
-    "fr": "Frédéric&nbsp;Chopin,<br/>Étude&nbsp;Op.10&nbsp;No.3 en mi&nbsp;majeur (début)"
+    "en": "<span class=\"name-1\"><span style=\"color: red; text-decoration: line-through;\">Beginning</span>Sadness</span><span class=\"name-2\">Frédéric&nbsp;Chopin</span><span class=\"name-3\">Etude&nbsp;Op.10&nbsp;No.3<br />in&nbsp;E&nbsp;major</span>",
+    "de": "<span class=\"name-1\"><span style=\"color: red; text-decoration: line-through;\">Anfang</span>Tristesse</span><span class=\"name-2\">Frédéric&nbsp;Chopin</span><span class=\"name-3\">Etude&nbsp;Op.10&nbsp;No.3<br />in&nbsp;E&#8209Dur</span>"
   },
-  "description": {
-    "en": "",
-    "de": "",
-    "fr": ""
-  }
+  "description": ""
 }

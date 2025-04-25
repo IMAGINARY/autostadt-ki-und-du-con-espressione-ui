@@ -1,0 +1,29 @@
+@keyframes fadeInInfoText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.info-text {
+  text-align: right;
+  font-weight: bold;
+  text-transform: none;
+  font-size: 24px;
+  right: 90px;
+  left: unset;
+  bottom: 85px;
+  z-index: 1000;
+  transition-property: opacity;
+  transition-delay: 1s;
+  transition-duration: 1s;
+  opacity: 0 !important;
+  animation: 1s 0s fadeInInfoText; /* prevent the info text from being shown on page load */
+}
+
+body.app-init .info-text,
+body.app-running .info-text {
+  opacity: 100% !important;
+}

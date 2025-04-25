@@ -1,0 +1,31 @@
+@import url("space-grotesk.css");
+
+html {
+  background-color: black;
+}
+
+body {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  background-color: #e7e1d8;
+  background-image: url("background.svg");
+  background-repeat: no-repeat;
+  background-size: 1920px 1080px;
+  font-family: "Space Grotesk", sans-serif;
+  color: black;
+  transition: none;
+}
+
+/* Hide the app close button. */
+.util-button-close {
+  display: none !important;
+}
+
+a {
+  /**
+     * Avoid link tap highlighting on touch devices.
+     * All AppLauncher buttons are links, so this is important.
+     */
+  -webkit-tap-highlight-color: transparent;
+}

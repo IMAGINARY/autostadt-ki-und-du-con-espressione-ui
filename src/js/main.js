@@ -6,7 +6,7 @@
         riggedHandOutlineColor: [1, 1, 1],
     } : {
         bodyClassList:[],
-        sceneClearColor: 0xFFFFFF,
+        sceneClearColor: 0xE7E1D8,
         riggedHandColor: '#FFFFFF',
         riggedHandOutlineColor: [0, 0, 0],
     }
@@ -254,12 +254,28 @@
         const barContainer = document.createElement('div');
         barContainer.classList.add('barContainer', parameterModel.id);
 
+        const barContainerContainer = document.createElement('div');
+        barContainerContainer.classList.add('barContainerContainer', parameterModel.id);
+
         const bar = document.createElement('div');
         bar.classList.add('bar', parameterModel.id);
         bar.appendChild(value);
         bar.appendChild(minValue);
 
         barContainer.appendChild(bar);
+
+        const separators = document.createElement('div');
+        separators.classList.add('separators', parameterModel.id);
+
+        for(let i = 0; i < 9; ++i) {
+            const separator = document.createElement('div');
+            separator.classList.add('separator', parameterModel.id);
+            separators.appendChild(separator);
+        }
+
+        barContainerContainer.append(separators);
+        barContainerContainer.append(barContainer);
+
 
         const maxDuration = animate ? 200 : 0;
         const animator = createAnimator(parameterModel.value, (v, animator) => {
@@ -279,7 +295,7 @@
         parameterModel.userData.animator = animator;
 
         parentDomElement.appendChild(label);
-        parentDomElement.appendChild(barContainer);
+        parentDomElement.appendChild(barContainerContainer);
         parentDomElement.appendChild(labelInvisible);
 
         return [label, bar];
@@ -430,6 +446,19 @@
     }
 
     function initOverlayScene(element) {
+        const title = document.createElement('div');
+        title.classList.add('title');
+        title.innerHTML = 'Mit oder<br />ohne KI?';
+        element.append(title);
+
+        const overlayBackground = document.createElement('div');
+        overlayBackground.classList.add('overlay-background');
+        element.append(overlayBackground);
+
+        const axis = document.createElement('div');
+        axis.classList.add('axis');
+        element.append(axis);
+
         const container = document.createElement('div');
         container.classList.add('parameters');
 

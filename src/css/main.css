@@ -8,48 +8,24 @@ DeepPink #ff1493 rgb(255, 20, 147) hsl(328, 100%, 54%)
 #e2f794 rgb(226, 247, 148) hsl(73, 86%, 77%)
 */
 
-/* quicksand-regular - latin */
-@font-face {
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../../lib/quicksand/quicksand-v9-latin-regular.eot'); /* IE9 Compat Modes */
-    src: local('Quicksand Regular'), local('Quicksand-Regular'),
-    url('../../lib/quicksand/quicksand-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../../lib/quicksand/quicksand-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../../lib/quicksand/quicksand-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
-    url('../../lib/quicksand/quicksand-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../../lib/quicksand/quicksand-v9-latin-regular.svg#Quicksand') format('svg'); /* Legacy iOS */
-}
-/* quicksand-700 - latin */
-@font-face {
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../../lib/quicksand/quicksand-v9-latin-700.eot'); /* IE9 Compat Modes */
-    src: local('Quicksand Bold'), local('Quicksand-Bold'),
-    url('../../lib/quicksand/quicksand-v9-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../../lib/quicksand/quicksand-v9-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../../lib/quicksand/quicksand-v9-latin-700.woff') format('woff'), /* Modern Browsers */
-    url('../../lib/quicksand/quicksand-v9-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../../lib/quicksand/quicksand-v9-latin-700.svg#Quicksand') format('svg'); /* Legacy iOS */
-}
+@import url("./space-grotesk.css");
 
 body {
-    --background-color: white;
-    --parameter-bar-height: 24px;
+    --background-color: #e7e1d8;
+    --parameter-bar-height: 40px;
     --parameter-bar-border-width: 0px;
-    --parameter-text-color: hsl(0, 0%, 50%);
+    --parameter-text-color: black;
+    --parameter-text-second-color: #73706b;
     --parameter-border-color: hsl(0, 0%, 50%);
-    --parameter-marker-color: hsl(0, 0%, 50%);
+    --parameter-marker-color: black;
 
     /* bright mode */
     --parameter-border-color-default: #777777;
-    --parameter-background-color: hsl(0, 0%, 100%);
-    --parameter-bar-container-background-color: hsl(0, 0%, 92%);
-    --parameter-color: hsl(0, 0%, 60%);
-    --parameter-second-color: hsl(0, 0%, 65%);
-    --parameter-third-color: hsl(0, 0%, 75%);
+    --parameter-background-color: transparent;
+    --parameter-bar-container-background-color: #cfbfab;
+    --parameter-color: #cfbfab;
+    --parameter-second-color: #ed7245;
+    --parameter-third-color: #ed7245;
 }
 
 body.dark-theme {
@@ -66,61 +42,158 @@ body.dark-theme {
 body {
     overflow: hidden;
     background-color: var(--background-color);
+    font-family: "Space Grotesk", sans-serif;
+    position: absolute;
+    width: 3830px;
+    height: 2160px;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.title {
+    display: inline-block;
+    position: absolute;
+    top: 260px;
+    left: 180px;
+    font-size: 120px;
+    font-weight: bold;
+    line-height: 144px;
+    color: var(--parameter-text-color);
+    text-align: left;
+    text-transform: uppercase;
+    text-box: trim-both cap alphabetic;
+}
+
+.overlay-background {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("overlay.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.axis {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 700px;
+    height: 600px;
+    background-image: url("axes.svg");
+    background-position: bottom left;
+    background-repeat: no-repeat;
+}
+
+.axis::before, .axis::after {
+    position: absolute;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 38px;
+    font-weight: normal;
+    color: black;
+}
+
+.axis::before {
+    content: "Loudness";
+    bottom: 373px;
+    left: 244px;
+}
+
+.axis::after {
+    content: "Tempo";
+    bottom: 240px;
+    left: 411px;
+    text-align: right;
 }
 
 .parameters {
     position: absolute;
     box-sizing: border-box;
-    width: 100vw;
-    bottom: 0px;
-    left: 0px;
+    bottom: 239px;
+    right: 202px;
     display: grid;
-    grid-template-columns: min-content auto min-content;
+    grid-template-columns: min-content 724px min-content;
     background-color: var(--parameter-background-color);
 }
 
+.parameters > * {
+    padding-top: 10px;
+}
+
+.parameters .tempo, .parameters .loudness, .parameters .impact {
+    display: none;
+}
+
 .parameters .label {
-    font-family: Quicksand, sans-serif;
-    font-weight: bold;
-    font-size: 15px;
+    font-weight: normal;
+    font-size: 36px;
     white-space: nowrap;
-    padding: 0px 25px 0px 25px;
     color: var(--parameter-text-color);
     height: calc(var(--parameter-bar-height) + 2 * var(--parameter-bar-border-width));
     line-height: calc(var(--parameter-bar-height) + 2 * var(--parameter-bar-border-width));
 }
 
+.parameters .label.mlMicroTiming, .parameters .label.mlDynamicSpread, .parameters .label.mlArticulation {
+    color: var(--parameter-text-second-color);
+}
+
 .parameters .label.left {
-    padding-right: 30px;
+    padding-right: 43px;
     text-align: left;
 }
 
+.parameters .label.left::after {
+    content: ":";
+}
+
 .parameters .label.right {
-    padding-left: 30px;
+    width: 0;
     text-align: right;
     visibility: hidden;
 }
 
+.parameters .barContainerContainer {
+    position: relative;
+    height: 52px;
+    padding-bottom: 20px;
+    border-color: #8d8984;
+    border-width: 0 4px 0 4px;
+    border-style: solid;
+    box-sizing: content-box;
+}
+
 .parameters .barContainer {
-    padding: 2px 8px 2px 8px;
     background-color: var(--parameter-bar-container-background-color);
 }
 
-.parameters :nth-child(10), .parameters :nth-child(11), .parameters :nth-child(12) {
-    padding-top: 8px !important;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.parameters .barContainer.mlArticulation::before, .parameters .barContainer.mlArticulation::after {
+    content: "low";
+    position: absolute;
+    top: 92px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: normal;
+    font-size: 36px;
+    color: #8d8984;
 }
 
-.parameters :nth-last-child(1), .parameters :nth-last-child(2), .parameters :nth-last-child(3) {
-    padding-bottom: 8px !important;
+.parameters .barContainer.mlArticulation::before {
+    content: "low";
+    left: -6px;
+}
+
+.parameters .barContainer.mlArticulation::after {
+    content: "high";
+    right: -6px;
 }
 
 .parameters .bar {
     box-sizing: border-box;
     position: relative;
     border: var(--parameter-bar-border-width) solid var(--parameter-border-color);
-    border-radius: 5px;
+    border-radius: 0;
     width: 100%;
     height: calc(var(--parameter-bar-height) + 2 * var(--parameter-bar-border-width));
     background-color: var(--parameter-third-color);
@@ -146,31 +219,39 @@ body {
     border-right: var(--parameter-color) solid var(--parameter-bar-border-width);
 }
 
+.parameters > *.mlTempo {
+    padding-top: 15px;
+}
+
+.parameters > *.mlArticulation {
+    padding-bottom: 8px;
+}
+
+.parameters .separators {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    top: 0px;
+}
+
+.parameters .separators.mlArticulation {
+    height: 70px;
+}
+
+.parameters .separators > .separator {
+    position: relative;
+    display: inline-block;
+    width: calc(10% - 1.5px);
+    height: 100%;
+    border-right: #B9B4AD solid 2px;
+}
+
 .marker {
     position: absolute;
-    left: 100%;
-}
-
-.marker::before {
-    content: "";
-    position: absolute;
-    border-color: var(--parameter-marker-color) transparent var(--parameter-marker-color) transparent;
-    border-style: solid;
-    border-width: 5px 5px 5px 5px;
-    left: -5px;
-    height: 14px;
-    width: 2px;
-}
-
-.marker::after {
-    content: "";
-    position: absolute;
-    border-color: var(--parameter-marker-color);
-    border-style: solid;
-    border-width: 0px 2px 0px 2px;
-    height: 20px;
-    left: -1px;
-    width: 0px;
+    left: calc(100% - 1px);
+    width: 4px;
+    height: 100%;
+    background-color: var(--parameter-marker-color);
 }
 
 #stats {

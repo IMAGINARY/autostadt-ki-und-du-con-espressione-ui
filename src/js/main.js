@@ -73,10 +73,39 @@
         inputParameters.mlArticulation.userData.rangeCallback = mlRangeCallback;
     }
 
+    const hsb00 = new THREE.Vector3(50 / 360, 90 / 100, 100 / 100);
+    const hsb01 = new THREE.Vector3(50 / 360, 30 / 100, 90 / 100);
+    const hsb10 = new THREE.Vector3(0 / 360, 90 / 100, 100 / 100);
+    const hsb11 = new THREE.Vector3(0 / 360, 30 / 100, 90 / 100);
+    const hsb_0 = new THREE.Vector3();
+    const hsb_1 = new THREE.Vector3();
+    const hsb = new THREE.Vector3();
+    const hsl = new THREE.Vector3();
+
+    // Converts a THREEJS.Vector3 representing a HSB/HSV color to HSL
+    function hsv2hsl({x:h_hsv,y:s_hsv,z:v_hsv}, hslOut) {
+        const h_hsl = h_hsv;
+        const l_hsl=v_hsv - v_hsv * s_hsv / 2
+        const m= Math.min(l_hsl, 1-l_hsl);
+        const s_hsl = m ? (v_hsv - l_hsl) / m : 0;
+        hslOut.set(h_hsl, s_hsl, l_hsl);
+    }
+
+    function autostadtKiUndDuColoring(t, l, i) {
+        hsb_0.lerpVectors(hsb00, hsb10, t);
+        hsb_1.lerpVectors(hsb01, hsb11, t);
+        hsb.lerpVectors(hsb_0, hsb_1, l);
+
+        hsv2hsl(hsb, hsl);
+
+        return new THREE.Color().setHSL(hsl.x, hsl.y, hsl.z);
+    }
+
     const particleColoring = {
         "fixed": () => new THREE.Color(app_state.particleOptions.color),
         "rgb(tempo, loudness, ml)": (t, l, i) => new THREE.Color(t, l, i),
         "hsl(ml, tempo, loudness)": (t, l, i) => new THREE.Color().setHSL(i, t, l),
+        "autostadt-ki-und-du": autostadtKiUndDuColoring,
     }
 
     const app_state = {
@@ -91,7 +120,7 @@
             velocity: new THREE.Vector3(),
             velocityRandomness: .5,
             color: "#ff1493",
-            particleColoring: 'rgb(tempo, loudness, ml)',
+            particleColoring: 'autostadt-ki-und-du',
             colorRandomness: .2,
             turbulence: .5,
             lifetime: 6,

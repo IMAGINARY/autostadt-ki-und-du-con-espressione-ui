@@ -116,11 +116,19 @@
         return setColorHSV(autostadtKiUndDuColoringTempoLoudness_hsb_tmp, new THREE.Color());
     }
 
+    const autostadtKiUndDuColoringTimeMl_hsb_tmp = new THREE.Vector3();
+    function autostadtKiUndDuColoringTimeMl(t, l, ml) {
+        const oscilator = (1 + Math.sin(performance.now() / 1000)) / 2;
+        bilinearInterpolation3(oscilator, ml, palette[0], palette[1], palette[2], palette[3], autostadtKiUndDuColoringTimeMl_hsb_tmp);
+        return setColorHSV(autostadtKiUndDuColoringTimeMl_hsb_tmp, new THREE.Color());
+    }
+
     const particleColoring = {
         "fixed": () => new THREE.Color(app_state.particleOptions.color),
         "rgb(tempo, loudness, ml)": (t, l, i) => new THREE.Color(t, l, i),
         "hsl(ml, tempo, loudness)": (t, l, i) => new THREE.Color().setHSL(i, t, l),
         "autostadt-ki-und-du-tempo-loudness": autostadtKiUndDuColoringTempoLoudness,
+        "autostadt-ki-und-du-time-ml": autostadtKiUndDuColoringTimeMl,
     }
 
     const app_state = {

@@ -73,39 +73,54 @@
         inputParameters.mlArticulation.userData.rangeCallback = mlRangeCallback;
     }
 
-    const hsb00 = new THREE.Vector3(50 / 360, 90 / 100, 100 / 100);
-    const hsb01 = new THREE.Vector3(50 / 360, 30 / 100, 90 / 100);
-    const hsb10 = new THREE.Vector3(0 / 360, 90 / 100, 100 / 100);
-    const hsb11 = new THREE.Vector3(0 / 360, 30 / 100, 90 / 100);
-    const hsb_0 = new THREE.Vector3();
-    const hsb_1 = new THREE.Vector3();
-    const hsb = new THREE.Vector3();
-    const hsl = new THREE.Vector3();
+    const palettes = [
+        [
+            // yellow/orange/red
+            new THREE.Vector3(1 + 50 / 360, 30 / 100, 90 / 100),
+            new THREE.Vector3(1 + 50 / 360, 90 / 100, 100 / 100),
+            new THREE.Vector3(1 + 0 / 360, 30 / 100, 90 / 100),
+            new THREE.Vector3(1 + 0 / 360, 90 / 100, 100 / 100),
+        ],
+        [
+            // blue/purple
+            new THREE.Vector3(180 / 360, 20 / 100, 100 / 100),
+            new THREE.Vector3(180 / 360, 60 / 100, 70 / 100),
+            new THREE.Vector3(230 / 360, 20 / 100, 100 / 100),
+            new THREE.Vector3(230 / 360, 60 / 100, 70 / 100),
+        ],
+    ];
+    let palette = palettes[0];
 
-    // Converts a THREEJS.Vector3 representing a HSB/HSV color to HSL
-    function hsv2hsl({x:h_hsv,y:s_hsv,z:v_hsv}, hslOut) {
+    // Converts a THREEJS.Vector3 representing a HSB/HSV color to a THREEJS.Color
+    function setColorHSV({x:h_hsv,y:s_hsv,z:v_hsv}, colorOut) {
         const h_hsl = h_hsv;
         const l_hsl=v_hsv - v_hsv * s_hsv / 2
         const m= Math.min(l_hsl, 1-l_hsl);
         const s_hsl = m ? (v_hsv - l_hsl) / m : 0;
-        hslOut.set(h_hsl, s_hsl, l_hsl);
+        colorOut.setHSL(h_hsl, s_hsl, l_hsl);
+        return colorOut;
     }
 
-    function autostadtKiUndDuColoring(t, l, i) {
-        hsb_0.lerpVectors(hsb00, hsb10, t);
-        hsb_1.lerpVectors(hsb01, hsb11, t);
-        hsb.lerpVectors(hsb_0, hsb_1, l);
+    const bilinearInterpolation3_tmp0 = new THREE.Vector3();
+    const bilinearInterpolation3_tmp1 = new THREE.Vector3();
+    function bilinearInterpolation3(x, y, p00, p01, p10, p11, out) {
+        bilinearInterpolation3_tmp0.lerpVectors(p00, p10, x);
+        bilinearInterpolation3_tmp1.lerpVectors(p01, p11, x);
+        out.lerpVectors(bilinearInterpolation3_tmp0, bilinearInterpolation3_tmp1, y);
+        return out;
+    }
 
-        hsv2hsl(hsb, hsl);
-
-        return new THREE.Color().setHSL(hsl.x, hsl.y, hsl.z);
+    const autostadtKiUndDuColoringTempoLoudness_hsb_tmp = new THREE.Vector3();
+    function autostadtKiUndDuColoringTempoLoudness(t, l, ml) {
+        bilinearInterpolation3(t, l, palette[0], palette[1], palette[2], palette[3], autostadtKiUndDuColoringTempoLoudness_hsb_tmp);
+        return setColorHSV(autostadtKiUndDuColoringTempoLoudness_hsb_tmp, new THREE.Color());
     }
 
     const particleColoring = {
         "fixed": () => new THREE.Color(app_state.particleOptions.color),
         "rgb(tempo, loudness, ml)": (t, l, i) => new THREE.Color(t, l, i),
         "hsl(ml, tempo, loudness)": (t, l, i) => new THREE.Color().setHSL(i, t, l),
-        "autostadt-ki-und-du": autostadtKiUndDuColoring,
+        "autostadt-ki-und-du-tempo-loudness": autostadtKiUndDuColoringTempoLoudness,
     }
 
     const app_state = {
@@ -120,7 +135,7 @@
             velocity: new THREE.Vector3(),
             velocityRandomness: 1,
             color: "#ff1493",
-            particleColoring: 'autostadt-ki-und-du',
+            particleColoring: 'autostadt-ki-und-du-tempo-loudness',
             colorRandomness: .2,
             turbulence: 1.2,
             lifetime: 6,

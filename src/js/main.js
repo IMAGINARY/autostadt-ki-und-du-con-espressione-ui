@@ -89,7 +89,13 @@
             new THREE.Vector3(230 / 360, 60 / 100, 70 / 100),
         ],
     ];
-    let palette = palettes[0];
+    let paletteIndex = 0
+    let palette = palettes[paletteIndex];
+
+    function cyclePalette() {
+        paletteIndex = (paletteIndex + 1) % palettes.length;
+        palette = palettes[paletteIndex];
+    }
 
     // Converts a THREEJS.Vector3 representing a HSB/HSV color to a THREEJS.Color
     function setColorHSV({x:h_hsv,y:s_hsv,z:v_hsv}, colorOut) {
@@ -429,6 +435,7 @@
         return effect.render(scene, camera);
     }
 
+    let idle = false;
     function updateParticles() {
         const {particleOptions, particleSpawnerOptions, leapMotion, idleOptions} = app_state;
         const {tempo, loudness, impact} = outputParameters;
@@ -441,7 +448,16 @@
         const spawnParticles = particleSpawnerOptions.spawnRate * delta;
 
         const idleDuration = performance.now() - leapMotion.lastFrameTime - idleOptions.timeout;
-        const idlePosition = idleOptions.position(idleDuration);
+        if(!idle && idleDuration > 0) {
+            // enter idle mode
+            idle = true;
+            cyclePalette();
+        }
+        if(idle && idleDuration < 0) {
+            // leave idle mode
+            idle = false;
+        }
+        const idlePosition = idleOptions.position(Math.max(0, idleDuration));
 
         const oldPoint = options.position.clone();
         const newPoint = leapMotion.tipPosition;

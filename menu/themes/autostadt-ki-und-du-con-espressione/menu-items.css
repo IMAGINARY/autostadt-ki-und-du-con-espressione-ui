@@ -53,6 +53,7 @@ body.app-running .menu-main-button:not(.initializing):not(.running) {
   left: 26px;
   top: 185px;
   opacity: 0%;
+  display: none; /* Play button is optional (enable: block; disable: none) */
 }
 
 body:not(.app-init):not(.app-running) .menu-main-button::before {

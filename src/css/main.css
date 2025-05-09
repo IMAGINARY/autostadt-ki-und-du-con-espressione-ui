@@ -18,6 +18,9 @@ body {
     --parameter-text-second-color: #73706b;
     --parameter-border-color: hsl(0, 0%, 50%);
     --parameter-marker-color: black;
+    --parameter-marker-width: 4px;
+    --gridline-number: 10;
+    --gridline-width: 2px;
 
     /* bright mode */
     --parameter-border-color-default: #777777;
@@ -155,7 +158,7 @@ body {
     visibility: hidden;
 }
 
-.parameters .barContainerContainer {
+.parameters .barContainer {
     position: relative;
     height: 52px;
     padding-bottom: 20px;
@@ -165,11 +168,18 @@ body {
     box-sizing: content-box;
 }
 
-.parameters .barContainer {
+.parameters .bar {
+    --parameter-range-min: 0;
+    --parameter-range-max: 1;
+    --parameter-value: calc(var(--parameter-range-min) + var(--parameter-range-max) / 2);
+
+    position: relative;
+    width: 100%;
+    height: var(--parameter-bar-height);
     background-color: var(--parameter-bar-container-background-color);
 }
 
-.parameters .barContainer.mlArticulation::before, .parameters .barContainer.mlArticulation::after {
+.parameters .bar.mlArticulation::before, .parameters .bar.mlArticulation::after {
     content: "low";
     position: absolute;
     top: 92px;
@@ -179,22 +189,23 @@ body {
     color: #8d8984;
 }
 
-.parameters .barContainer.mlArticulation::before {
+.parameters .bar.mlArticulation::before {
     content: "low";
     left: -6px;
 }
 
-.parameters .barContainer.mlArticulation::after {
+.parameters .bar.mlArticulation::after {
     content: "high";
     right: -6px;
 }
 
-.parameters .bar {
+.parameters .range {
     box-sizing: border-box;
-    position: relative;
+    position: absolute;
     border: var(--parameter-bar-border-width) solid var(--parameter-border-color);
     border-radius: 0;
-    width: 100%;
+    left: calc(100% * var(--parameter-range-min));
+    width: calc(100% * (var(--parameter-range-max) - var(--parameter-range-min)));
     height: calc(var(--parameter-bar-height) + 2 * var(--parameter-bar-border-width));
     background-color: var(--parameter-third-color);
     overflow: hidden;
@@ -227,29 +238,31 @@ body {
     padding-bottom: 8px;
 }
 
-.parameters .separators {
+.parameters .gridlines {
     position: absolute;
     width: 100%;
     height: 100px;
     top: 0px;
+    left: calc(var(--gridline-width) / 2);
 }
 
-.parameters .separators.mlArticulation {
+.parameters .gridlines.mlArticulation {
     height: 70px;
 }
 
-.parameters .separators > .separator {
+.parameters .gridlines > .gridline {
     position: relative;
     display: inline-block;
-    width: calc(10% - 1.5px);
+    width: calc(100% / var(--gridline-number));
     height: 100%;
-    border-right: #B9B4AD solid 2px;
+    border-right: #B9B4AD solid var(--gridline-width);
+    box-sizing: border-box;
 }
 
 .marker {
     position: absolute;
-    left: calc(100% - 1px);
-    width: 4px;
+    left: calc(100% * var(--parameter-value) - var(--parameter-marker-width) / 2);
+    width: var(--parameter-marker-width);
     height: 100%;
     background-color: var(--parameter-marker-color);
 }

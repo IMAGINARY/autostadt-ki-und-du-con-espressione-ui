@@ -296,45 +296,35 @@
         const marker = document.createElement('div');
         marker.classList.add('marker', parameterModel.id);
 
-        const value = document.createElement('div');
-        value.classList.add('value', parameterModel.id);
-        value.appendChild(marker);
-
-        const minValue = document.createElement('div');
-        minValue.classList.add('minValue', parameterModel.id);
-
-        const barContainer = document.createElement('div');
-        barContainer.classList.add('barContainer', parameterModel.id);
-
-        const barContainerContainer = document.createElement('div');
-        barContainerContainer.classList.add('barContainerContainer', parameterModel.id);
+        const range = document.createElement('div');
+        range.classList.add('range', parameterModel.id);
 
         const bar = document.createElement('div');
         bar.classList.add('bar', parameterModel.id);
-        bar.appendChild(value);
-        bar.appendChild(minValue);
+        bar.appendChild(range);
+        bar.appendChild(marker);
 
-        barContainer.appendChild(bar);
-
-        const separators = document.createElement('div');
-        separators.classList.add('separators', parameterModel.id);
+        const gridlines = document.createElement('div');
+        gridlines.classList.add('gridlines', parameterModel.id);
 
         for(let i = 0; i < 9; ++i) {
-            const separator = document.createElement('div');
-            separator.classList.add('separator', parameterModel.id);
-            separators.appendChild(separator);
+            const gridline = document.createElement('div');
+            gridline.classList.add('gridline', parameterModel.id);
+            gridlines.appendChild(gridline);
         }
 
-        barContainerContainer.append(separators);
-        barContainerContainer.append(barContainer);
-
+        const barContainer = document.createElement('div');
+        barContainer.classList.add('barContainer', parameterModel.id);
+        barContainer.append(gridlines);
+        barContainer.append(bar);
 
         const maxDuration = animate ? 200 : 0;
         const animator = createAnimator(parameterModel.value, (v, animator) => {
             const {min, max} = rangeCallback();
-            bar.style.width = `${100 * max}%`;
-            minValue.style.width = `${100 * (min / max)}%`;
-            value.style.width = `${100 * (min + (max - min) * v) / max}%`;
+            const valueMappedToRange = min + (max - min) * v;
+            bar.style.setProperty("--parameter-range-min", min);
+            bar.style.setProperty("--parameter-range-max", max);
+            bar.style.setProperty("--parameter-value", valueMappedToRange);
             if (parameterModel.value !== animator.end.value) {
                 animator.begin.timestamp = performance.now();
                 animator.begin.value = animator.current.value;
@@ -347,10 +337,8 @@
         parameterModel.userData.animator = animator;
 
         parentDomElement.appendChild(label);
-        parentDomElement.appendChild(barContainerContainer);
+        parentDomElement.appendChild(barContainer);
         parentDomElement.appendChild(labelInvisible);
-
-        return [label, bar];
     }
 
     let controller, stats;

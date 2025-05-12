@@ -205,7 +205,7 @@
             }
         },
         idleOptions: {
-            timeout: 60 * 1000,
+            timeout: config.idleTimeout,
             interpolationDuration: 100 * 1000,
             position: t => {
                 const tf = 2.0 * Math.PI / 10000;

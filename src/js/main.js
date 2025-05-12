@@ -82,6 +82,13 @@
             new THREE.Vector3(180 / 360, 60 / 100, 70 / 100),
         ],
         [
+            // green-ish
+            new THREE.Vector3(140 / 360, 20 / 100, 100 / 100),
+            new THREE.Vector3(140 / 360, 60 / 100, 70 / 100),
+            new THREE.Vector3(60 / 360, 20 / 100, 100 / 100),
+            new THREE.Vector3(60 / 360, 60 / 100, 70 / 100),
+        ],
+        [
             // yellow/orange/red
             new THREE.Vector3(1 + 50 / 360, 30 / 100, 90 / 100),
             new THREE.Vector3(1 + 50 / 360, 90 / 100, 100 / 100),

@@ -81,12 +81,12 @@ body:not(.app-init):not(.app-running) .menu-main-button::before {
   display: block;
   font-size: 24px;
   font-weight: bold;
-  line-height: 2;
+  line-height: 40px;
 }
 
 .menu-main-button .name .name-3 {
   display: block;
   font-size: 24px;
   font-weight: normal;
-  line-height: 2;
+  line-height: 40px;
 }

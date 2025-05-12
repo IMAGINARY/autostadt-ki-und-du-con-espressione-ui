@@ -29,10 +29,11 @@
   content: "Language";
 }
 
+/* Language labels are swapped such that "English" is displayed when German is active and vice versa. */
 body[data-lang="de"] .util-button-lang > span::before {
-  content: "Deutsch";
+  content: "English";
 }
 
 body[data-lang="en"] .util-button-lang > span::before {
-  content: "English";
+  content: "Deutsch";
 }

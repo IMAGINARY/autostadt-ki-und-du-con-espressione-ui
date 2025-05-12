@@ -75,18 +75,18 @@
 
     const palettes = [
         [
-            // yellow/orange/red
-            new THREE.Vector3(1 + 50 / 360, 30 / 100, 90 / 100),
-            new THREE.Vector3(1 + 50 / 360, 90 / 100, 100 / 100),
-            new THREE.Vector3(1 + 0 / 360, 30 / 100, 90 / 100),
-            new THREE.Vector3(1 + 0 / 360, 90 / 100, 100 / 100),
-        ],
-        [
             // blue-ish
             new THREE.Vector3(230 / 360, 20 / 100, 100 / 100),
             new THREE.Vector3(230 / 360, 60 / 100, 70 / 100),
             new THREE.Vector3(180 / 360, 20 / 100, 100 / 100),
             new THREE.Vector3(180 / 360, 60 / 100, 70 / 100),
+        ],
+        [
+            // yellow/orange/red
+            new THREE.Vector3(1 + 50 / 360, 30 / 100, 90 / 100),
+            new THREE.Vector3(1 + 50 / 360, 90 / 100, 100 / 100),
+            new THREE.Vector3(1 + 0 / 360, 30 / 100, 90 / 100),
+            new THREE.Vector3(1 + 0 / 360, 90 / 100, 100 / 100),
         ],
     ];
     let paletteIndex = 0

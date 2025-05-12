@@ -90,10 +90,10 @@
         ],
         [
             // yellow/orange/red
-            new THREE.Vector3(1 + 50 / 360, 30 / 100, 90 / 100),
-            new THREE.Vector3(1 + 50 / 360, 90 / 100, 100 / 100),
-            new THREE.Vector3(1 + 0 / 360, 30 / 100, 90 / 100),
-            new THREE.Vector3(1 + 0 / 360, 90 / 100, 100 / 100),
+            new THREE.Vector3(50 / 360, 30 / 100, 90 / 100),
+            new THREE.Vector3(50 / 360, 90 / 100, 100 / 100),
+            new THREE.Vector3(0 / 360, 30 / 100, 90 / 100),
+            new THREE.Vector3(0 / 360, 90 / 100, 100 / 100),
         ],
     ];
     let paletteIndex = 0
@@ -129,6 +129,29 @@
         return setColorHSV(autostadtKiUndDuColoringTempoLoudness_hsb_tmp, new THREE.Color());
     }
 
+    const autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpLo = new THREE.Vector3();
+    const autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpHi = new THREE.Vector3();
+    const autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpMix = new THREE.Vector3();
+    function autostadtKiUndDuColoringTempoLoudnessMlImpact(t, l, ml) {
+        const paletteIndexLo = Math.floor(ml * (palettes.length - 1));
+        const paletteLo = palettes[paletteIndexLo];
+        const paletteIndexHi = Math.min(paletteIndexLo + 1, palettes.length - 1);
+        const paletteHi = palettes[paletteIndexHi];
+        const mlInPaletteRange = ml * (palettes.length - 1) - paletteIndexLo;
+
+        //console.log(ml, paletteIndexLo, paletteLo, paletteIndexHi, paletteHi, mlInPaletteRange);
+
+        bilinearInterpolation3(t, l, paletteLo[0], paletteLo[1], paletteLo[2], paletteLo[3], autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpLo);
+        bilinearInterpolation3(t, l, paletteHi[0], paletteHi[1], paletteHi[2], paletteHi[3], autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpHi);
+        autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpMix.lerpVectors(
+            autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpLo,
+            autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpHi,
+            mlInPaletteRange
+        );
+
+        return setColorHSV(autostadtKiUndDuColoringTempoLoudnessMlImpact_hsb_tmpMix, new THREE.Color());
+    }
+
     const autostadtKiUndDuColoringTimeMl_hsb_tmp = new THREE.Vector3();
     function autostadtKiUndDuColoringTimeMl(t, l, ml) {
         const oscilator = (1 + Math.sin(performance.now() / 1000)) / 2;
@@ -141,6 +164,7 @@
         "rgb(tempo, loudness, ml)": (t, l, i) => new THREE.Color(t, l, i),
         "hsl(ml, tempo, loudness)": (t, l, i) => new THREE.Color().setHSL(i, t, l),
         "autostadt-ki-und-du-tempo-loudness": autostadtKiUndDuColoringTempoLoudness,
+        "autostadt-ki-und-du-tempo-loudness-ml-impact": autostadtKiUndDuColoringTempoLoudnessMlImpact,
         "autostadt-ki-und-du-time-ml": autostadtKiUndDuColoringTimeMl,
     }
 

@@ -11,7 +11,7 @@ DeepPink #ff1493 rgb(255, 20, 147) hsl(328, 100%, 54%)
 @import url("./space-grotesk.css");
 
 body {
-    --background-color: #e7e1d8;
+    --background-color: rgb(250 236 224);
     --parameter-bar-height: 40px;
     --parameter-bar-border-width: 0px;
     --parameter-text-color: black;
@@ -25,10 +25,10 @@ body {
     /* bright mode */
     --parameter-border-color-default: #777777;
     --parameter-background-color: transparent;
-    --parameter-bar-container-background-color: #cfbfab;
+    --parameter-bar-container-background-color: rgb(226 183 153);
     --parameter-color: #cfbfab;
     --parameter-second-color: #ed7245;
-    --parameter-third-color: #ed7245;
+    --parameter-third-color: rgb(234 89 44);
 }
 
 body.dark-theme {

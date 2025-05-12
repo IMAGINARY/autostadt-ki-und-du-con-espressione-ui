@@ -8,7 +8,7 @@ body {
   position: absolute;
   width: 1920px;
   height: 1080px;
-  background-color: #e7e1d8;
+  background-color: rgb(250 236 224);
   background-image: url("background.svg");
   background-repeat: no-repeat;
   background-size: 1920px 1080px;

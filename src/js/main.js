@@ -6,7 +6,7 @@
         riggedHandOutlineColor: [1, 1, 1],
     } : {
         bodyClassList:[],
-        sceneClearColor: 0xE7E1D8,
+        sceneClearColor: 0xfaece0,
         riggedHandColor: '#FFFFFF',
         riggedHandOutlineColor: [0, 0, 0],
     }

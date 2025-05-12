@@ -180,7 +180,7 @@
             velocity: new THREE.Vector3(),
             velocityRandomness: 1,
             color: "#ff1493",
-            particleColoring: 'autostadt-ki-und-du-time-ml',
+            particleColoring: 'autostadt-ki-und-du-tempo-loudness-ml-impact',
             colorRandomness: .2,
             turbulence: 1.2,
             lifetime: 6,

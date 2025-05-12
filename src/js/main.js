@@ -452,10 +452,12 @@
             // enter idle mode
             idle = true;
             cyclePalette();
+            document.body.classList.add("idle");
         }
         if(idle && idleDuration < 0) {
             // leave idle mode
             idle = false;
+            document.body.classList.remove("idle");
         }
         const idlePosition = idleOptions.position(Math.max(0, idleDuration));
 

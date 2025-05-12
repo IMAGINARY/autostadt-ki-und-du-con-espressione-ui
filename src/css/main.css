@@ -66,6 +66,12 @@ body {
     text-align: left;
     text-transform: uppercase;
     text-box: trim-both cap alphabetic;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.idle .title {
+    opacity: 100%;
 }
 
 .overlay-background {

@@ -14,13 +14,13 @@
 
     const labels = {
         'tempo': 'Tempo',
-        'loudness': 'Loudness',
-        'impact': 'Impact',
+        'loudness': 'Lautstärke',
+        'impact': 'Einfluss',
         'mlTempo': 'Tempo',
-        'mlLoudness': 'Loudness',
-        'mlMicroTiming': 'Microtiming',
-        'mlDynamicSpread': 'Dynamic Spread',
-        'mlArticulation': 'Articulation',
+        'mlLoudness': 'Lautstärke',
+        'mlMicroTiming': 'Mikrotiming',
+        'mlDynamicSpread': 'Lautstärkeverteilung',
+        'mlArticulation': 'Artikulation',
     };
 
     const outputParameters = {

@@ -100,7 +100,7 @@ body {
 }
 
 .axis::before {
-    content: "Loudness";
+    content: "Lautstärke";
     bottom: 373px;
     left: 244px;
 }

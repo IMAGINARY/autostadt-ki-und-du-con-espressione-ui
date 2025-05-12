@@ -14,6 +14,7 @@ const config = (function () {
         'reloadOnError': {parseFn: parseBoolean, defaultValue: true},
         'darkMode': {parseFn: parseBoolean, defaultValue: false},
         'idleTimeout': {parseFn: parseInteger, defaultValue: 60 * 1000},
+        'particleColoring': {parseFn: parseString, defaultValue: 'autostadt-ki-und-du-tempo-loudness-ml-impact'},
     };
     const parseWithDefault = key => searchParams.has(key) ? keys[key].parseFn(searchParams.get(key)) : keys[key].defaultValue;
     const config = Object.keys(keys)

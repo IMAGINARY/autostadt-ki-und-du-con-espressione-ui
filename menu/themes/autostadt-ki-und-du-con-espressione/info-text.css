@@ -8,6 +8,7 @@
 }
 
 .info-text {
+  display: none; /* hide the info text for now */
   text-align: right;
   font-weight: bold;
   text-transform: none;

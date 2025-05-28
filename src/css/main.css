@@ -93,32 +93,11 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 700px;
-    height: 600px;
+    width: 767px;
+    height:  600px;
     background-image: url("axes.svg");
     background-position: bottom left;
     background-repeat: no-repeat;
-}
-
-.axis::before, .axis::after {
-    position: absolute;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 38px;
-    font-weight: normal;
-    color: black;
-}
-
-.axis::before {
-    content: "Lautstärke";
-    bottom: 373px;
-    left: 244px;
-}
-
-.axis::after {
-    content: "Tempo";
-    bottom: 240px;
-    left: 411px;
-    text-align: right;
 }
 
 .parameters {
